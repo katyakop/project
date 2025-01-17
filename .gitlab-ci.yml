@@ -1,0 +1,18 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+    - docker build -t my_fastapi_app .
+
+deploy:
+  stage: deploy
+  script:
+    - docker-compose up -d
